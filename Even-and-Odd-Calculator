@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int number;
+    int evenSum = 0;
+    int oddSum = 0;
+
+    cout << "==== Even and Odd Sum Calculator =====" << endl << endl;
+
+    for (int i = 1; i <= 10; i++)
+    {
+        cout << "Enter number " << i << ": ";
+        cin >> number;
+
+        if (number % 2 == 0)
+        {
+            evenSum += number;
+        }
+        else
+        {
+            oddSum += number;
+        }
+    }
+
+    cout << endl;
+    cout << "Sum of Even Numbers: " << evenSum << endl;
+    cout << "Sum of Odd Numbers: " << oddSum << endl;
+
+    if (evenSum > oddSum)
+    {
+        cout << "Even Dominates!" << endl;
+    }
+    else
+    {
+        cout << "Odd Dominates!" << endl;
+    }
+
+    cout << endl;
+    return 0;
+}

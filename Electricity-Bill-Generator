@@ -1,0 +1,61 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	int key, units, total;
+	int tax = 0;
+
+	cout << "==== Electricity Bill Generator =====" << endl;
+	cout << endl;
+
+	cout << "Enter the Number of Units: ";
+	cin >> units;
+
+	if (units <= 100)
+	{
+		total = units* 10;
+		cout << "An Addition of Rs.10/unit took place"<<endl;
+	}
+	else if (units >= 101 && units <=300)
+	{
+		total = units * 15;
+		cout << "An Addition of Rs.15/unit took place"<<endl;
+	}
+	else
+	{
+		total = units * 20;
+		cout << "An Addition of Rs.20/unit took place"<<endl;
+	}
+	cout << endl;
+	
+	if (total > 2000)
+	{
+		tax = total * 0.10;
+		total = total + tax;
+		cout << "An 10% Tax has applied to the bill due the total bill Exceeding Rs.2000!" << endl;
+	}
+	cout << endl;
+	cout << "Press 1 for Display total bill"<<endl;
+	cout << "Press 2 for Display units only" <<endl;
+	cout<< "Press 3 for Display bill with tax" <<endl;
+	
+	cout << "Enter the Key: ";
+	cin >> key;
+	cout << endl;
+	cout << "===== Summary =====" << endl;;
+	cout << endl;
+	switch (key)
+	{
+	case 1:
+		cout << "Total Bill: " << total << endl;
+		break;
+	case 2:
+		cout << "Total Units: " << units << endl;
+		break;
+	case 3:
+		cout << "Total Bill with Tax: " << total << endl;
+		break;
+	default:
+		cout << "Invalid Option!"<<endl;
+	}
+}

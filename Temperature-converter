@@ -1,0 +1,53 @@
+#include <iostream>
+#include <iomanip> 
+using namespace std;
+
+int main()
+{
+    float temp, F, C;
+    int key;
+
+    cout << "==== Temperature Converter =====" << endl << endl;
+
+    cout << "Enter the Current Temperature: ";
+    cin >> temp;
+
+    cout << "Press 1 to Convert Celsius to Fahrenheit" << endl;
+    cout << "Press 2 to Convert Fahrenheit to Celsius" << endl << endl;
+
+    cout << "Enter the Key: ";
+    cin >> key;
+
+    switch (key)
+    {
+    case 1:
+        F = temp * 9 / 5 + 32;
+        cout << fixed << setprecision(2);
+        cout << "After Converting " << temp << "°C into Fahrenheit, the Result is: " << F << "°F!" << endl;
+
+
+        if (temp > 100)
+            cout << "Warning: Temperature is above boiling point!" << endl;
+        else if (temp < 0)
+            cout << "Warning: Temperature is below freezing point!" << endl;
+        break;
+
+    case 2:
+        C = (temp - 32) * 5 / 9;
+        cout << fixed << setprecision(2);
+        cout << "After Converting " << temp << "F into Celsius, the Result is: " << C << "C!" << endl;
+
+
+        if (C > 100)
+            cout << "Warning: Temperature is above boiling point!" << endl;
+        else if (C < 0)
+            cout << "Warning: Temperature is below freezing point!" << endl;
+        break;
+
+    default:
+        cout << "Undefined Action!" << endl;
+    }
+
+    cout << endl;
+    return 0;
+}

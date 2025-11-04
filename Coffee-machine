@@ -1,0 +1,111 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int choice, quantity, method;
+    float price = 0, total = 0, grandTotal = 0, payment;
+    int another = 1;  // to ask if user wants to add another drink
+
+    cout << "======== Coffee Machine ========" << endl;
+    cout << endl;
+    cout << "Welcome! Let's take your order.\n\n";
+
+    while (true) {
+        cout << "1. Espresso for Rs. 250" << endl;
+        cout << "2. Cappuccino for Rs. 350" << endl;
+        cout << "3. Latte for Rs. 400" << endl;
+        cout << "4. Black Coffee for Rs. 200" << endl;
+        cout << "5. Tea for Rs. 150" << endl;
+        cout << "6. Exit (Proceed to Payment)" << endl;
+        cout << endl;
+
+        cout << "Enter your drink choice: ";
+        cin >> choice;
+
+        if (choice == 6)
+            break;
+
+        cout << "Enter quantity: ";
+        cin >> quantity;
+
+        switch (choice) {
+        case 1:
+            price = 250;
+            cout << "Added " << quantity << " Espresso(s) to your order.\n";
+            break;
+        case 2:
+            price = 350;
+            cout << "Added " << quantity << " Cappuccino(s) to your order.\n";
+            break;
+        case 3:
+            price = 400;
+            cout << "Added " << quantity << " Latte(s) to your order.\n";
+            break;
+        case 4:
+            price = 200;
+            cout << "Added " << quantity << " Black Coffee(s) to your order.\n";
+            break;
+        case 5:
+            price = 150;
+            cout << "Added " << quantity << " Tea(s) to your order.\n";
+            break;
+        default:
+            cout << "Invalid choice! Try again.\n";
+            continue;
+        }
+
+        total = price * quantity;
+        grandTotal += total;
+
+        cout << "Current total so far: Rs. " << grandTotal << endl;
+
+        cout << "\nDo you want to order another drink? (1 for Yes / 0 for No): ";
+        cin >> another;
+
+        if (another == 0) {
+            cout << "\nProceeding to payment..." << endl;
+            break;
+        }
+
+        cout << endl;
+    }
+
+    cout << "\nYour final bill is Rs. " << grandTotal << endl;
+
+    cout << "Choose payment method (1 for Cash / 2 for Card): ";
+    cin >> method;
+
+    if (method == 1)
+    {
+        cout << "Processing cash payment...\n";
+    }
+    else if (method == 2)
+    {
+        cout << "Processing card payment...\n";
+    }
+    else
+    {
+        cout << "Invalid payment method, assuming cash...\n";
+    }
+    cout << endl;
+
+    cout << "Enter payment amount: ";
+    cin >> payment;
+
+    cout << endl;
+    if (payment >= grandTotal)
+    {
+        cout << "Payment successful! Preparing your order..." << endl;
+        cout << "Enjoy your drinks!" << endl;
+    }
+    else if (payment > grandTotal)
+    {
+        cout << "Returning Rs. " << payment - grandTotal << " as change.\n";
+        cout << "Enjoy your drinks!" << endl;
+    }
+    else {
+        cout << "Insufficient payment! You still owe Rs. " << grandTotal - payment << endl;
+    }
+
+    cout << "\nThanks for visiting our Coffee Machine!" << endl;
+}

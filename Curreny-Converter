@@ -1,0 +1,89 @@
+#include <iostream>
+using namespace std;
+int main() {
+	float pkr, usd, euro, riyal, dirham, cad, aud;
+	int conversion, another;
+
+	cout << "==== Currency Converter ====" << endl;
+	cout << endl;
+
+	cout << "Welcome to your simple currency converter!" << endl;
+
+	cout << "Please choose your diserable amount to convert!" << endl;
+	cout << "1. PKR To USD" << endl;
+	cout << "2. PKR To EURO" << endl;
+	cout << "3. PKR To RIYAL" << endl;
+	cout << "4. PKR To DIRHAM" << endl;
+	cout << "5. PKR To CAD" << endl;
+	cout << "6. PKR To AUD" << endl;
+	cout << "7. to Stop!" << endl;
+  
+  cout << endl;
+
+	while (true)
+	{
+		cout << "Enter the amount to exchange: ";
+		cin >> pkr;
+		cout << endl;
+		cout << "Enter your Conversion!: ";
+		cin >> conversion;
+		cout << endl;
+
+		switch (conversion)
+		{
+		case 1:
+			cout << "PKR To USD" << endl;
+			usd =(float) pkr / 278.5;
+			cout << pkr << " PKR = " << usd << " USD " << endl;
+			break;
+		
+		case 2:
+			cout << "PKR To EURO" << endl;
+			euro =(float) pkr / 324.83;
+			cout << pkr << " PKR = " << euro << " EURO " << endl;
+			break;
+		
+		case 3:
+			cout << "PKR To RIYAL" << endl;
+			riyal =(float) pkr / 75.26;
+			cout << pkr << " PKR = " << riyal << " RIYAL " << endl;
+			break;
+		
+		case 4:
+			cout << "PKR To DIRHAM" << endl;
+			dirham =(float) pkr / 76.84;
+			cout << pkr << " PKR = " << dirham << " DIRHAM " << endl;
+			break;
+		
+		case 5:
+			cout << "PKR To CAD" << endl;
+			cad =(float) pkr / 200.84;
+			cout << pkr << " PKR = " << cad << " CAD " << endl;
+			break;
+		
+		case 6:
+			cout << "PKR To AUD" << endl;
+			aud =(float) pkr / 184.51;
+			cout << pkr << " PKR = " << aud << " AUD " << endl;
+			break;
+		
+		case 7:
+			return 0;
+
+		default:
+			cout << "Invalid choice! Please select a valid conversion." << endl;
+			break;
+
+		}
+		cout << "Do you want to convert another amount? (1 for Yes / 0 for No)" << endl;
+		cin >> another;
+		cout << endl;
+
+		if (another == 0)
+		{
+			cout << "===== Thanks for using the Currency Converter! ======" << endl;
+			break;
+		}
+
+	}
+}

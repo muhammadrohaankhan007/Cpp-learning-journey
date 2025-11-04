@@ -1,0 +1,59 @@
+#include <iostream>
+using namespace std;
+int main() {
+	int fuel, distance, key, trips;
+	float avg_efficiency = 0;
+	float efficiency;
+
+	cout << "==== Fuel Efficiency Tracker ====" << endl;
+	cout << endl;
+
+	cout << "Welcome to your personalized Fuel Tracker!" << endl;
+	cout << "Provide your fuel: ";
+	cin >> fuel;
+	cout << "Provide your distance covered: ";
+	cin >> distance;
+
+	cout << "Press 1 for efficiency: " << endl;
+	cout << "Press 2 to view Distance covered" << endl;
+	cout << "Press 3 to view Fuel consumed: " << endl;
+	cout << endl;
+	cout << "Enter your Diserable Command: ";
+	cin >> key;
+	switch (key)
+	{
+	case 1:
+		cout << "How many trips did you covered?: ";
+		cin >> trips;
+		for (int i = 0; i < trips; i++)
+		{
+			cout << "Enter distance for trip " << i + 1 << ": ";
+			cin >> distance;
+			cout << "Enter fuel used for trip " << i + 1 << ": ";
+			cin >> fuel;
+
+			efficiency = (float)distance / fuel;
+			avg_efficiency += efficiency;
+			cout << "Your Efficiency for this trip is: " << efficiency << endl;
+			cout << "Your Average Efficiency for this trip is: " << avg_efficiency << endl;
+		}
+		avg_efficiency = avg_efficiency / trips;
+		cout << "\nOverall Average Efficiency: " << avg_efficiency << " km/l\n";
+
+		if (avg_efficiency < 10.0)
+		{
+			cout << "Caution! You're Vehicle has Low Efficiency!" << endl;
+		}
+		break;
+	case 2:
+		cout << "You Covered a Total Distance of " << distance << " km's!" << endl;
+		break;
+	case 3:
+		cout << "You consumed a total of " << fuel << " Literes of fuel!" << endl;
+		break;
+	default:
+		cout << "Invalid Action! Try Again!" << endl;
+		break;
+	}
+
+}

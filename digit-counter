@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+
+int countdigits(int n)
+{
+	n = abs(n); // converts neative into positive
+	if (n == 0)
+	{
+		return 0;
+	}
+		return 1 + countdigits(n / 10);
+	
+}
+
+int main() {
+	int n;
+	cout << "Enter the number: ";
+	cin >> n;
+	if (n == 0)
+	{
+		cout << "Result: 1";
+	}
+	else
+	{
+		cout << "Result: " << countdigits(n);
+	}
+	return 0;
+}

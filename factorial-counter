@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+int factorial(int n)
+{
+	int fact = 1;
+	if (n == 0)
+	{
+		return 1;
+	}
+	else
+	{
+		return n * factorial(n - 1);
+	}
+}
+
+int main() {
+	int n;
+	cout << "Enter number: ";
+	cin >> n;
+	if (n == 0)
+	{
+		cout << "Result: 1";
+	}
+	else
+	{
+		cout << "Result: " << factorial(n);
+	}
+}

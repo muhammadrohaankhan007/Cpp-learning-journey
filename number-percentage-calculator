@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+void percentage(double v, int p)
+{
+	if (p > 100)      // base case: stop at 100%
+	{
+		return;
+	}
+	cout << p << "% of " << v << " = " << (v * p / 100) << endl;
+	percentage(v, p + 1);   // recursive call for next percentage
+}
+
+int main() {
+	double v;
+	cout << "Enter the value: ";
+	cin >> v;
+
+	cout << "Percentages from 1% to 100% of " << v << " are:" << endl;
+	percentage(v, 1);   // start recursion at 1%
+	return 0;
+}

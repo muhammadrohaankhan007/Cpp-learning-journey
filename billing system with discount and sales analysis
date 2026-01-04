@@ -1,0 +1,118 @@
+#include <iostream>
+using namespace std;
+
+float totalBillAmount(float itemPrice[], int itemCount) {
+    float total = 0.0;
+    for (int i = 0; i < itemCount; i++) {
+        total += itemPrice[i];
+    }
+    return total;
+
+}
+
+float calculateDiscount(float totalBill, int itemCount) {
+    float discountRate = 0.0;
+
+    if (totalBill >= 5000) {
+        discountRate = 0.10;
+    }
+    else if (totalBill >= 3000) {
+        discountRate = 0.05;
+    }
+
+    if (itemCount > 10) {
+        discountRate+=0.02;
+    }
+
+    float discount = totalBill * discountRate;
+
+    return discount;
+}
+
+float finalAmount(float discount, float totalBill) {
+    float finalAmount = totalBill-discount;
+    return finalAmount;
+}
+
+
+int main() {
+    float itemPrice[100];
+    string itemName;
+    int itemCount, customerCount;
+    
+    cout << "Enter the item Name: ";
+    cin >> itemName; 
+
+    cout << "Enter the number of items: ";
+    cin >> itemCount;
+
+    cout << "Enter " << itemName << " Prices: ";
+    for (int i = 0; i < itemCount; i++) {
+        cin>>itemPrice[i];
+    }
+
+    cout << endl;
+    
+    cout << "Item prices: ";
+    for (int i = 0; i < itemCount; i++) {
+        cout << itemPrice[i] << endl;
+    }
+
+    cout << endl;
+    
+    cout << "items prices using pointers: ";
+    for (int i = 0; i < itemCount; i++) {
+        cout << *(itemPrice + i) << endl;;
+    }
+    
+    float totalBill = totalBillAmount(itemPrice, itemCount);
+    float  discount = calculateDiscount(totalBill, itemCount);
+    float final = finalAmount(discount, totalBill);
+
+    cout << endl;
+
+    cout << "----------- Final ----------\n";
+    cout << "TotalBill: " << totalBill << endl;
+    cout << "Discount: " << discount << endl;
+    cout << "Final Payable Amount: " << final << endl;
+    cout << endl;
+   //Question 5: Multiple Records Storage 
+   // a) Input the number of customers.
+    //b) Declare a 2D array to store the total bill amounts of all customers.
+    //c) Store each customer’s total bill in the array using loops.
+
+    cout<<"---------  Multiple Records Storage ---------" << endl;
+    float customerBill[100][1];
+    
+    cout << "Enter the Number of Customers: ";
+    cin >> customerCount;
+
+    cout << endl;
+
+    for (int i = 0; i < customerCount; i++){
+        cout << "enter the total bill amount for customer " << i + 1 << " :";
+        cin >> customerBill[i][0];
+    }
+    cout << endl;
+    for (int i = 0; i < customerCount; i++) {
+        cout << "total " << i + 1 << " bill: " << customerBill[i][0] << endl;
+    }
+    
+    //Question 6: Sales Analysis 
+    //Using the 2D array :
+    //• Calculate the total of all bills
+      //  • Calculate the average bill amount
+        //• Display both results
+
+    cout << "---------- Sales Analysis ------" << endl;
+    float totalSales = 0.0;
+
+    for (int i = 0; i < customerCount; i++) {
+        totalSales += customerBill[i][0];
+    }
+
+    float avgBill = totalSales / customerCount;
+
+    cout << "Total Sales: " << totalSales << endl;
+    cout << "Average Bill by Customer: " << avgBill;
+}

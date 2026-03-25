@@ -1,0 +1,86 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Base Class (Level 1)
+class HOD {
+protected:
+    string deptName, hodName;
+    int deptID, totalStaff;
+
+public:
+    // Parameters have default values to keep the child constructors simple
+    HOD(string dName = "Computer Science", string hName = "Dr. Saadia karim", int id = 101, int staff = 20) {
+        deptName = dName; hodName = hName; deptID = id; totalStaff = staff;
+    }
+
+    void DisplayInformation() {
+        cout << "--- Department: " << deptName << " | HOD: " << hodName << " ---" << endl;
+    }
+};
+
+// Level 2: Inherits from HOD
+class Coordinator : public HOD {
+protected:
+    string coordName, eventAssigned;
+    int officeNum, hours;
+
+public:
+    Coordinator(string cn, string event, int off, int h) : HOD() {
+        coordName = cn; eventAssigned = event; officeNum = off; hours = h;
+    }
+
+    void DisplayInformation() {
+        HOD::DisplayInformation();
+        cout << "Coordinator: " << coordName << " | Event: " << eventAssigned << endl;
+    }
+};
+
+// Level 3: Inherits from Coordinator
+class Faculties : public Coordinator {
+protected:
+    string facultyName, subject;
+    int cabinNum, experience;
+
+public:
+    Faculties(string fn, string sub, int cabin, int exp)
+        : Coordinator("Alice Brown", "Annual Fest", 302, 40) {
+        facultyName = fn; subject = sub; cabinNum = cabin; experience = exp;
+    }
+
+    void DisplayInformation() {
+        Coordinator::DisplayInformation();
+        cout << "Faculty: " << facultyName << " | Subject: " << subject << " | Exp: " << experience << "yrs" << endl;
+    }
+};
+
+// Level 4: Inherits from Faculties (The End of the Chain)
+class Students : public Faculties {
+private:
+    string studentName, grade;
+    int rollNo;
+    float gpa;
+
+public:
+    // Only pass the 4 fields for the student
+    Students(string sn, int roll, string gr, float g)
+        : Faculties("Dr. John", "OOP", 505, 10) {
+        studentName = sn; rollNo = roll; grade = gr; gpa = g;
+    }
+
+    void DisplayInformation() {
+        Faculties::DisplayInformation();
+        cout << "Student: " << studentName << " | Roll No: " << rollNo << " | GPA: " << gpa << endl;
+        cout << "------------------------------------------------" << endl;
+    }
+};
+
+int main() {
+    // Because it's multilevel, creating a 'Student' object 
+    // automatically contains all data from HOD, Coordinator, and Faculty.
+    Students s1("Mark Zu", 55, "A", 3.9);
+    s1.DisplayInformation();
+
+    return 0;
+}   

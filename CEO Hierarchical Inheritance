@@ -1,0 +1,136 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Base Class
+class CEO {
+protected:
+    string companyName;
+    string ceoName;
+    int totalExperience;
+    double companyTurnover;
+
+public:
+    // Parameterized Constructor
+    CEO(string cName, string owner, int exp, double turnover) {
+        companyName = cName;
+        ceoName = owner;
+        totalExperience = exp;
+        companyTurnover = turnover;
+    }
+
+    void DisplayInformation() {
+        cout << "\n--- Company Overview ---" << endl;
+        cout << "Company: " << companyName << " | CEO: " << ceoName << endl;
+        cout << "Experience: " << totalExperience << " years | Turnover: $" << companyTurnover << "M" << endl;
+    }
+};
+
+// Derived Class 1: Manager
+class Manager : public CEO {
+private:
+    string managerName;
+    string department;
+    int teamSize;
+    double salary;
+
+public:
+    Manager(string cn, string owner, int exp, double turn, string mName, string dept, int size, double sal)
+        : CEO(cn, owner, exp, turn) {
+        managerName = mName;
+        department = dept;
+        teamSize = size;
+        salary = sal;
+    }
+
+    void DisplayInformation() {
+        CEO::DisplayInformation(); // Display common CEO/Company info
+        cout << "Role: Manager | Name: " << managerName << " | Dept: " << department
+            << " | Team Size: " << teamSize << " | Salary: $" << salary << endl;
+    }
+};
+
+// Derived Class 2: Assistant Manager
+class AssistantManager : public CEO {
+private:
+    string amName;
+    string shift;
+    int projectsHandled;
+    string reportingTo;
+
+public:
+    AssistantManager(string cn, string owner, int exp, double turn, string name, string sft, int proj, string boss)
+        : CEO(cn, owner, exp, turn) {
+        amName = name;
+        shift = sft;
+        projectsHandled = proj;
+        reportingTo = boss;
+    }
+
+    void DisplayInformation() {
+        CEO::DisplayInformation();
+        cout << "Role: Assistant Manager | Name: " << amName << " | Shift: " << shift
+            << " | Projects: " << projectsHandled << " | Reports To: " << reportingTo << endl;
+    }
+};
+
+// Derived Class 3: Supervisor
+class Supervisor : public CEO {
+private:
+    string supervisorName;
+    string floorNumber;
+    int machinesManaged;
+    bool safetyCertified;
+
+public:
+    Supervisor(string cn, string owner, int exp, double turn, string sName, string floor, int machines, bool safety)
+        : CEO(cn, owner, exp, turn) {
+        supervisorName = sName;
+        floorNumber = floor;
+        machinesManaged = machines;
+        safetyCertified = safety;
+    }
+
+    void DisplayInformation() {
+        CEO::DisplayInformation();
+        cout << "Role: Supervisor | Name: " << supervisorName << " | Floor: " << floorNumber
+            << " | Machines: " << machinesManaged << " | Certified: " << (safetyCertified ? "Yes" : "No") << endl;
+    }
+};
+
+// Derived Class 4: Employee
+class Employee : public CEO {
+private:
+    string empName;
+    int empID;
+    string skillSet;
+    int leaveBalance;
+
+public:
+    Employee(string cn, string owner, int exp, double turn, string eName, int id, string skill, int leaves)
+        : CEO(cn, owner, exp, turn) {
+        empName = eName;
+        empID = id;
+        skillSet = skill;
+        leaveBalance = leaves;
+    }
+
+    void DisplayInformation() {
+        CEO::DisplayInformation();
+        cout << "Role: Employee | Name: " << empName << " | ID: " << empID
+            << " | Skill: " << skillSet << " | Leaves Left: " << leaveBalance << endl;
+    }
+};
+
+int main() {
+    // Example: Creating a Manager object
+    Manager m1("TechCorp", "Jane Doe", 25, 500.5, "Alice Smith", "IT Operations", 12, 95000);
+    m1.DisplayInformation();
+
+    // Example: Creating an Employee object
+    Employee e1("TechCorp", "Jane Doe", 25, 500.5, "Bob Wilson", 1042, "C++ Backend", 15);
+    e1.DisplayInformation();
+
+    return 0;
+}

@@ -1,0 +1,65 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Publication {
+	string Title;
+	float Price;
+
+public:
+	void getData() {
+		cout << "Enter your Book Title: ";
+		getline(cin, Title);
+		cout << "Enter your Book Price: ";
+		cin >> Price;
+   }
+
+	void putData() {
+		cout << "\nTitle: " << Title << endl;
+		cout << "Price: $" << Price << endl;
+	}
+};
+
+class book : public Publication {
+	int pageCount;
+
+public:
+	void getData() {
+		cout << "\nEnter Your Book total Page Count: ";
+		cin >> pageCount;
+	}
+
+	void putData() {
+		cout << "\nTotal Page Count: " << pageCount << endl;
+	}
+};
+
+class type : public Publication {
+	float playTime;
+
+public:
+	void getData() {
+		cout << "\nEnter Book total Play time in Minutes: ";
+		cin>>playTime;
+	}
+	
+	void putData() {
+		cout << "Book Total Play time(in mins): " << playTime << endl;
+	}
+};
+
+int main() 
+{
+	Publication p1;
+	p1.getData();
+	p1.putData();
+
+	book p2;
+	p2.getData();
+	p2.putData();
+
+	type p3;
+	p3.getData();
+	p3.putData();
+
+}

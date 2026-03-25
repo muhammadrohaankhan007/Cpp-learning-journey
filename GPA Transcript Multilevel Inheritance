@@ -1,0 +1,71 @@
+#include <iostream>
+#include <iomanip> // For decimal formatting
+
+using namespace std;
+
+// Base Class: Semester 1
+class TranscriptSemester1 {
+protected:
+    float gpa1;
+
+public:
+    TranscriptSemester1(float g1) : gpa1(g1) {}
+
+    // Function to be overridden
+    virtual void DisplayTranscript() {
+        cout << "Semester 1 GPA: " << gpa1 << endl;
+        cout << "Cumulative GPA: " << gpa1 << endl;
+        cout << "----------------------------" << endl;
+    }
+};
+
+// Level 2: Inherits Semester 1
+class TranscriptSemester2 : public TranscriptSemester1 {
+protected:
+    float gpa2;
+
+public:
+    TranscriptSemester2(float g1, float g2) : TranscriptSemester1(g1), gpa2(g2) {}
+
+    // Overriding the display function
+    void DisplayTranscript() override {
+        float cgpa = (gpa1 + gpa2) / 2.0;
+        cout << "Semester 1 GPA: " << gpa1 << endl;
+        cout << "Semester 2 GPA: " << gpa2 << endl;
+        cout << "Cumulative GPA: " << fixed << setprecision(2) << cgpa << endl;
+        cout << "----------------------------" << endl;
+    }
+};
+
+// Level 3: Current Semester (Inherits Semester 2)
+class TranscriptSemester3 : public TranscriptSemester2 {
+private:
+    float gpa3;
+
+public:
+    TranscriptSemester3(float g1, float g2, float g3)
+        : TranscriptSemester2(g1, g2), gpa3(g3) {
+    }
+
+    // Final Override
+    void DisplayTranscript() override {
+        float cgpa = (gpa1 + gpa2 + gpa3) / 3.0;
+        cout << "--- Final Transcript ---" << endl;
+        cout << "Semester 1 GPA: " << gpa1 << endl;
+        cout << "Semester 2 GPA: " << gpa2 << endl;
+        cout << "Semester 3 GPA: " << gpa3 << endl;
+        cout << "** TOTAL CGPA:  " << fixed << setprecision(2) << cgpa << " **" << endl;
+        cout << "----------------------------" << endl;
+    }
+};
+
+int main() {
+    // Creating the object for the current semester (Sem 3)
+    // We pass all previous GPAs up the chain
+    TranscriptSemester3 myTranscript(3.5, 3.8, 3.2);
+
+    // This calls the most recent overridden version
+    myTranscript.DisplayTranscript();
+
+    return 0;
+}

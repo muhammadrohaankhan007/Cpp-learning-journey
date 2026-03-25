@@ -1,0 +1,59 @@
+#include <iostream> 
+using namespace std;
+
+class Vehicle {
+protected:
+    string vehicleName;
+    int wheels;
+
+public:
+    string vehicleNo;
+
+    void accelerate(int speed) {
+        cout << "Accelerating at: " << speed << " kmph" << endl;
+    }
+};
+
+class ThreeWheeler : public Vehicle {
+private:
+    bool powerSteer;
+    bool Tax;
+
+public:
+    // Constructor
+    ThreeWheeler(string vID, string vName, int numWheels, bool pSteer, bool taxPayed) {
+        vehicleNo = vID;
+        vehicleName = vName;
+        wheels = numWheels;
+        powerSteer = pSteer;
+        Tax = taxPayed;
+    }
+
+    void displayDetails() {
+        cout << "Vehicle No: " << vehicleNo << endl;
+        cout << "Vehicle Name: " << vehicleName << endl;
+        cout << "Number of Wheels: " << wheels << endl;
+
+        if (powerSteer == true){
+				cout<<"Power steering: Yes"<<endl;
+			}
+		else
+			{
+				cout<<"Power Steering: No"<<endl;
+			}
+			
+     	if (Tax == true){
+				cout<<"Tax: Yes"<<endl;
+			}
+		else
+			{
+				cout<<"Tax: No"<<endl;
+			}
+    }
+};
+
+int main() {
+    ThreeWheeler obj1("AJQ-613", "Rickshaw", 3, true, true);
+    obj1.displayDetails();
+    obj1.accelerate(100);
+    return 0;

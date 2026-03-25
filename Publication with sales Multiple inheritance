@@ -1,0 +1,103 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Independent Parent 1: Handles Sales Data
+class Sales {
+protected:
+    float salesArray[3];
+
+public:
+    void getData() {
+        cout << "Enter Sales for last 3 months: " << endl;
+        for (int i = 0; i < 3; i++) {
+            cout << "  Month " << i + 1 << ": ";
+            cin >> salesArray[i];
+        }
+    }
+
+    void putData() {
+        cout << "Sales History: ";
+        for (int i = 0; i < 3; i++) {
+            cout << "$" << salesArray[i] << (i < 2 ? ", " : "");
+        }
+        cout << endl;
+    }
+};
+
+// Independent Parent 2: Handles Publication Data
+class Publication {
+protected:
+    string Title;
+    float Price;
+
+public:
+    void getData() {
+        cout << "Enter Title: ";
+        cin >> ws; // Clears buffer
+        getline(cin, Title);
+        cout << "Enter Price: ";
+        cin >> Price;
+    }
+
+    void putData() {
+        cout << "\nTitle: " << Title << " | Price: $" << Price << endl;
+    }
+};
+
+// MULTIPLE INHERITANCE: book gets everything from both
+class book : public Publication, public Sales {
+    int pageCount;
+
+public:
+    void getData() {
+        Publication::getData();
+        Sales::getData();
+        cout << "Enter Page Count: ";
+        cin >> pageCount;
+    }
+
+    void putData() {
+        Publication::putData();
+        Sales::putData();
+        cout << "Total Pages: " << pageCount << endl;
+    }
+};
+
+// MULTIPLE INHERITANCE: type gets everything from both
+class type : public Publication, public Sales {
+    float playTime;
+
+public:
+    void getData() {
+        Publication::getData();
+        Sales::getData();
+        cout << "Enter Total Play time (mins): ";
+        cin >> playTime;
+    }
+
+    void putData() {
+        Publication::putData();
+        Sales::putData();
+        cout << "Total Play time: " << playTime << " mins" << endl;
+    }
+};
+
+int main() {
+    // We create the 'book' and 'type' objects
+    book b1;
+    type t1;
+
+    cout << "--- INPUT FOR BOOK ---" << endl;
+    b1.getData();
+
+    cout << "\n--- INPUT FOR TYPE ---" << endl;
+    t1.getData();
+
+    cout << "\n--- FINAL RESULTS ---";
+    b1.putData();
+    t1.putData();
+
+    return 0;
+}

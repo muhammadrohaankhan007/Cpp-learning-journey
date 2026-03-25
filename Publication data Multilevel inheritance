@@ -1,0 +1,94 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Level 1: Base Class
+class Publication {
+protected:
+    string Title;
+    float Price;
+
+public:
+    void getData() {
+        cout << "Enter Publication Title: ";
+        cin >> ws; // Clear buffer
+        getline(cin, Title);
+        cout << "Enter Price: ";
+        cin >> Price;
+    }
+
+    void putData() {
+        cout << "\nTitle: " << Title << endl;
+        cout << "Price: $" << Price << endl;
+    }
+};
+
+// Level 2: Derived from Publication (The Middle Man)
+class Publication2 : public Publication {
+protected:
+    int month, day, year;
+
+public:
+    void getData() {
+        Publication::getData(); // Get Title and Price from grandparent
+        cout << "Enter Publication Date (MM DD YYYY): ";
+        cin >> month >> day >> year;
+    }
+
+    void putData() {
+        Publication::putData(); // Show Title and Price from grandparent
+        cout << "Published on: " << month << "/" << day << "/" << year << endl;
+    }
+};
+
+// Level 3: Derived from Publication2
+class book : public Publication2 {
+    int pageCount;
+
+public:
+    void getData() {
+        Publication2::getData(); // Calls the date input, which calls title/price input
+        cout << "Enter Page Count: ";
+        cin >> pageCount;
+    }
+
+    void putData() {
+        Publication2::putData(); // Shows title/price AND date
+        cout << "Pages: " << pageCount << endl;
+    }
+};
+
+// Level 3: Derived from Publication2
+class type : public Publication2 {
+    float playTime;
+
+public:
+    void getData() {
+        Publication2::getData();
+        cout << "Enter Playing Time (mins): ";
+        cin >> playTime;
+    }
+
+    void putData() {
+        Publication2::putData();
+        cout << "Playing Time: " << playTime << " mins" << endl;
+    }
+};
+
+int main() {
+    book myBook;
+    type myTape;
+
+    cout << "--- RECORDING BOOK DETAILS ---" << endl;
+    myBook.getData();
+
+    cout << "\n--- RECORDING TYPE DETAILS ---" << endl;
+    myTape.getData();
+
+    cout << "\n--- FINAL RECORDS ---";
+    myBook.putData();
+    myTape.putData();
+
+    return 0;
+}

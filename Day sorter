@@ -1,0 +1,51 @@
+#include <iostream>
+#include <cstring>  // For strcmp
+using namespace std;
+
+void swap(char*& a, char*& b) {
+    char* temp = a;
+    a = b;
+    b = temp;
+}
+
+void bsort(char* arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - 1 - i; j++) {
+
+            if (strcmp(arr[j], arr[j + 1]) > 0) {
+                swap(arr[j], arr[j + 1]);
+            }
+        }
+    }
+}
+
+void printOrder(char* arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << endl;
+    }
+}
+
+int main() {
+
+    char* days[] = {
+        (char*)"Sunday",
+        (char*)"Monday",
+        (char*)"Tuesday",
+        (char*)"Wednesday",
+        (char*)"Thursday",
+        (char*)"Friday",
+        (char*)"Saturday"
+    };
+
+    int n = sizeof(days) / sizeof(days[0]);
+
+    cout << "Before sorting:\n";
+    printOrder(days, n);
+
+    bsort(days, n);
+
+    cout << "\nAfter sorting:\n";
+    printOrder(days, n);
+
+    return 0;
+}

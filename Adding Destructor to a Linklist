@@ -1,0 +1,63 @@
+#include <iostream>
+using namespace std;
+
+class link {
+public:
+    int data;
+    link* next;
+
+    link(int d) {
+        data = d;
+        next = NULL;
+    }
+};
+class linklist {
+    link* first;
+
+public:
+    linklist() {
+        first = NULL;
+    }
+
+    // add node at beginning
+    void additem(int d) {
+        link* newlink = new link(d);
+        newlink->next = first;
+        first = newlink;
+    }
+    void display() {
+        link* current = first;
+        while (current != NULL) {
+            cout << current->data << " -> ";
+            current = current->next;
+        }
+        cout << "NULL\n";
+    }
+    ~linklist() {
+        cout << "\nDestructor called...\n";
+
+        link* current = first;
+
+        while (current != NULL) {
+            link* temp = current;
+            current = current->next;
+
+            cout << "Deleting node with value: " << temp->data << endl;
+
+            delete temp;   // free memory
+        }
+    }
+};
+
+int main() {
+
+    linklist l;
+
+    l.additem(10);
+    l.additem(20);
+    l.additem(30);
+
+    l.display();
+    return 0;
+}
+

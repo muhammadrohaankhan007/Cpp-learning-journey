@@ -1,0 +1,60 @@
+#include <iostream>
+#include <cctype>
+using namespace std;
+
+class String {
+private:
+    char* str;
+    int length;
+
+public:
+    String(const char* s) {
+        length = 0;
+        while (s[length] != '\0') length++;
+
+        str = new char[length + 1];
+        for (int i = 0; i < length; i++)
+            str[i] = s[i];
+
+        str[length] = '\0';
+    }
+
+    // Copy constructor
+    String(const String& other) {
+        length = other.length;
+        str = new char[length + 1];
+        for (int i = 0; i < length; i++)
+            str[i] = other.str[i];
+
+        str[length] = '\0';
+    }
+
+    ~String() {
+        delete[] str;
+    }
+
+    void upit() {
+        for (int i = 0; i < length; i++) {
+            str[i] = toupper((unsigned char)str[i]);
+        }
+    }
+
+    void display() const {
+        cout << str << endl;
+    }
+};
+
+int main() {
+    String s("crazy");
+
+    cout << "Before upit(): ";
+    s.display();
+
+    s.upit();
+
+    cout << "After upit(): ";
+    s.display();
+
+    return 0;
+}
+

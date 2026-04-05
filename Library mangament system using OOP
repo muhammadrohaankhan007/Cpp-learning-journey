@@ -1,0 +1,101 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+class book {
+protected:
+	string title, author;
+	int pub_year;
+
+public:
+	book(string a, string b, int c)
+	{
+		title = a;
+		author = b;
+		pub_year = c;
+	}
+	int book_age()
+	{
+		return 2026 - pub_year;
+	}
+
+	bool rare_book()
+	{
+		return 50 < book_age();
+	}
+
+	void display()
+	{
+		cout << endl << "Title: " << title;
+		cout << endl << "Author Name: " << author;
+		cout << endl << "Publication year: " << pub_year;
+		cout << endl << "Age of book: " << book_age();
+		if (rare_book())
+		{
+			cout << endl << "Status: Rare book." << endl;
+		}
+		else
+		{
+			cout << endl << "Status: Not a Rare book." << endl;
+		}
+	}
+};
+class Ebook : public book
+{
+private:
+	float file_size;
+	string file_format;
+public:
+	Ebook(string t, string a, int p, string ff, float fs)
+		: book(t, a, p)
+	{
+		file_size = fs;
+		file_format = ff;
+	}
+
+	float get_file_size()
+	{
+		return file_size;
+	}
+
+	string get_file_format()
+	{
+		return file_format;
+	}
+
+	static float total_memory(const vector<Ebook>& book)
+	{
+		float total = 0;
+		for (int i = 0; i < book.size(); i++)
+		{
+			total += book[i].file_size;
+		}
+		return total;
+	}
+
+	bool check_compatibility(string device_format) const
+	{
+		return (device_format == file_format);
+	}
+
+	void display()
+	{
+		book::display();
+		cout << "File Format: " << file_format << endl;
+		cout << "File size: " << file_size << " MB " << endl;
+	}
+};
+int main()
+{
+	Ebook b1("Programing_fundamental", "Hsshim Javid", 2005, "PDF", 500);
+	Ebook b2("OOP", "Hashim", 2006, "PDF", 700);
+	b1.display();
+	b2.display();
+
+	vector<Ebook> books;
+	books.push_back(b1);
+	books.push_back(b2);
+	float total = Ebook::total_memory(books);
+	cout << endl << "total storage: " << total;
+
+}
